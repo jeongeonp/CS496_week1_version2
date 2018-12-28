@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btn_next3 = (Button)findViewById(R.id.btn3);
+
         btn_next3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
