@@ -4,12 +4,56 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".tab3"
+    android:layout_marginTop="50dp"
+
     >
 
-    <TextView
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="You"
+            android:textSize="30dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Opponent"
+            android:textSize="30dp" />
+
+
+
+    </LinearLayout>
+
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="last and final activity"
-        android:textSize="30dp"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_weight="2"
+        android:text="rock" />
+
+    <Button
+        
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_weight="2"
+        android:text="paper" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_weight="2"
+        android:text="scissors" />
 
 </android.support.constraint.ConstraintLayout>

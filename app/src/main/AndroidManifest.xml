@@ -23,6 +23,7 @@
         <activity android:name=".tab1" />
         <activity android:name=".tab2" />
         <activity android:name=".tab3" />
+        <activity android:name=".tab1_moreinfo" />
     </application>
 
 </manifest>

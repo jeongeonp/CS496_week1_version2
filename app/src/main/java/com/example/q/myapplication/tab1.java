@@ -17,6 +17,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.view.View;
+import android.content.Intent;
+import android.widget.Button;
+
 public class tab1 extends AppCompatActivity {
 
     private String TAG = tab1.class.getSimpleName();
@@ -29,9 +33,26 @@ public class tab1 extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> contactList;
 
+    Button btninfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.list_item);
+
+        btninfo = (Button)findViewById(R.id.info);
+        btninfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //다음페이지로 전환 형태
+                //화면 전환할 때 사용하는 클래스
+                Intent intent = new Intent(tab1.this, tab1_moreinfo.class);
+                startActivity(intent);
+            }
+        });
+        
+        //btninfo.Enabled = true;
+
         setContentView(R.layout.firsttab);
 
         contactList = new ArrayList<>();
@@ -39,6 +60,9 @@ public class tab1 extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.list);
 
         new GetContacts().execute();
+
+
+
     }
 
     /**
