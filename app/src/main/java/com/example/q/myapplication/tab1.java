@@ -50,8 +50,7 @@ public class tab1 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        
-        //btninfo.Enabled = true;
+
 
         setContentView(R.layout.firsttab);
 
