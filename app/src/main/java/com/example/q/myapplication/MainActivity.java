@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //다음페이지로 전환 형태
                 //화면 전환할 때 사용하는 클래스
-                Intent intent = new Intent(MainActivity.this, tab2.class);
+                Intent intent = new Intent(MainActivity.this, tab3.class);
                 startActivity(intent);
             }
         });
