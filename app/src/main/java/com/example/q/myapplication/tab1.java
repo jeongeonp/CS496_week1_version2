@@ -40,7 +40,7 @@ public class tab1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_item);
 
-        btninfo = (Button)findViewById(R.id.info);
+        /*btninfo = (Button)findViewById(R.id.info);
         btninfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +49,7 @@ public class tab1 extends AppCompatActivity {
                 Intent intent = new Intent(tab1.this, tab1_moreinfo.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
         setContentView(R.layout.firsttab);
@@ -62,6 +62,11 @@ public class tab1 extends AppCompatActivity {
 
 
 
+    }
+
+    public void launchMoreInfo(View view) {
+        Intent intent = new Intent(this, tab1_moreinfo.class);
+        startActivity(intent);
     }
 
     /**

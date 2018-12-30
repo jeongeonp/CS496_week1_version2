@@ -23,7 +23,14 @@
         <activity android:name=".tab1" />
         <activity android:name=".tab2" />
         <activity android:name=".tab3" />
-        <activity android:name=".tab1_moreinfo" />
+        <activity android:name=".game1"
+            android:parentActivityName=".tab3"/>
+        <activity android:name=".game2"
+            android:parentActivityName=".tab3"/>
+        <activity android:name=".game3"
+            android:parentActivityName=".tab3"/>
+        <activity android:name=".tab1_moreinfo"
+            android:parentActivityName=".tab1"/>
     </application>
 
 </manifest>
