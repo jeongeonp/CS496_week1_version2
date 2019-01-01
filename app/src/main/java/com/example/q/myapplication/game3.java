@@ -27,6 +27,8 @@ public class game3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.thirdgame);
 
+
+
         answer11 = findViewById(R.id.answer11);
         answer12 = findViewById(R.id.answer12);
         answer13 = findViewById(R.id.answer13);
@@ -85,12 +87,19 @@ public class game3 extends AppCompatActivity {
     }
 
     public void test() {
+        gryffindor=0;
+        hufflepuff=0;
+        ravenclaw=0;
+        slytherin=0;
+
+
         if (answer11.isChecked()) hufflepuff+=10;
         else if (answer12.isChecked()) ravenclaw+=10;
         else if (answer13.isChecked()) gryffindor+=10;
         else if (answer14.isChecked()) slytherin+=10;
         else {
             notCompleted(1, answer1);
+            result = "No Match";
             return;
         }
 
@@ -100,6 +109,7 @@ public class game3 extends AppCompatActivity {
         else if (answer24.isChecked()) slytherin+=20;
         else {
             notCompleted(2, answer2);
+            result = "No Match";
             return;
         }
 
@@ -109,6 +119,7 @@ public class game3 extends AppCompatActivity {
         else if (answer34.isChecked()) slytherin+=27;
         else {
             notCompleted(3, answer3);
+            result = "No Match";
             return;
         }
 
@@ -118,6 +129,7 @@ public class game3 extends AppCompatActivity {
         else if (answer44.isChecked()) ravenclaw+=14;
         else {
             notCompleted(4, answer4);
+            result = "No Match";
             return;
         }
 
@@ -127,6 +139,7 @@ public class game3 extends AppCompatActivity {
         else if (answer54.isChecked()) gryffindor+=17;
         else {
             notCompleted(5, answer5);
+            result = "No Match";
             return;
         }
 
@@ -135,9 +148,10 @@ public class game3 extends AppCompatActivity {
 
     public String calculate() {
         if (slytherin > ravenclaw && slytherin > hufflepuff && slytherin > gryffindor) return "slytherin";
-        else if (ravenclaw > hufflepuff && ravenclaw > gryffindor) return "ravenclaw";
-        else if (hufflepuff > gryffindor) return "hufflepuff";
-        else return "gryffindor";
+        else if (ravenclaw > hufflepuff && ravenclaw > gryffindor && ravenclaw > slytherin) return "ravenclaw";
+        else if (hufflepuff > gryffindor && hufflepuff > slytherin && hufflepuff > ravenclaw) return "hufflepuff";
+        else if (gryffindor > slytherin && gryffindor > hufflepuff && gryffindor > ravenclaw) return "gryffindor";
+        else return "No Match";
     }
 
 }

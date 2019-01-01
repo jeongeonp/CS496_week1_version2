@@ -6,15 +6,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".game1"
-    android:layout_marginTop="30dp"
-
     >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg4"
+        android:scaleType="fitXY"
+        />
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_marginTop="30dp"
         android:id="@+id/layout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -26,7 +32,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="You"
-            android:textSize="30dp" />
+            android:fontFamily="@font/harrypotter"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="35dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -34,7 +42,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Opponent"
-            android:textSize="30dp" />
+            android:fontFamily="@font/harrypotter"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="35dp" />
 
     </LinearLayout>
 
@@ -73,17 +83,24 @@
             android:textSize="30dp"
             android:gravity="center"
             android:text="Your score is "
-
+            android:fontFamily="@font/bradleyhand"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:shadowColor="#FFFFFF"
+            android:shadowRadius="5"
             />
         <TextView
             android:layout_marginTop="10dp"
             android:id="@+id/score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="50dp"
+            android:textSize="45dp"
             android:gravity="center"
+            android:fontFamily="@font/bradleyhand"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:layout_marginBottom="5dp"
-            android:textColor="@android:color/holo_green_dark"/>
+            android:textColor="#FFFFFF"/>
 
     </LinearLayout>
 
@@ -107,7 +124,9 @@
                 android:layout_height="90dp"
                 android:layout_weight="1"
                 android:text="rock"
-                android:background="@drawable/rock"/>
+                android:background="@drawable/rock"
+                android:fontFamily="@font/bradleyhand"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
             <Button
                 android:id="@+id/paper"
@@ -115,7 +134,9 @@
                 android:layout_height="90dp"
                 android:layout_weight="1"
                 android:text="paper"
-                android:background="@drawable/paper"/>
+                android:background="@drawable/paper"
+                android:fontFamily="@font/bradleyhand"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
             <Button
                 android:id="@+id/scissors"
@@ -123,7 +144,10 @@
                 android:layout_height="90dp"
                 android:layout_weight="1"
                 android:text="scissors"
-                android:background="@drawable/scissors"/>
+                android:textSize="18dp"
+                android:background="@drawable/scissors"
+                android:fontFamily="@font/bradleyhand"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
         </LinearLayout>
 
