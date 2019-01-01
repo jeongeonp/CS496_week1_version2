@@ -9,8 +9,6 @@ import com.github.chrisbanes.photoview.PhotoViewAttacher;
 
 import java.util.List;
 
-//import android.support.v7.app.ActionBarActivity;
-
 public class ImagePagerAdapter extends PagerAdapter {
 
     private List<ImageView> images;
@@ -21,9 +19,6 @@ public class ImagePagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        // imageView == imgDisplay
-        //  == viewLayout
-//diskCacheStrategy(DiskCacheStrategy.ALL).
         ImageView imageView = images.get(position);
         // imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView.setScaleType(ImageView.ScaleType.MATRIX);

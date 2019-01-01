@@ -6,42 +6,50 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginBottom="10dp"
+
     >
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:textSize="20dp"
-        android:text="Please Choose a Function"
-        android:gravity="center"/>
+
     <Button
         android:id="@+id/btn"
         android:layout_weight="1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/harrypotter"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:text="CONTACTS"
+        android:textSize="45dp"
+        android:shadowColor="#FFFFFF"
+        android:shadowRadius="10"
+        android:background="@drawable/scene5"
         />
 
     <Button
         android:id="@+id/btn2"
         android:layout_weight="1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/harrypotter"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:text="GALLERY"
+        android:textSize="45dp"
+        android:shadowColor="#FFFFFF"
+        android:shadowRadius="10"
+        android:background="@drawable/scene4"
         />
 
     <Button
         android:id="@+id/btn3"
         android:layout_weight="1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:text="Mini Games" />
+        android:layout_height="0dp"
+        android:fontFamily="@font/harrypotter"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="MINI GAMES"
+        android:textSize="45dp"
+        android:shadowColor="#FFFFFF"
+        android:shadowRadius="10"
+        android:background="@drawable/scene2"
+        />
 
 </LinearLayout>

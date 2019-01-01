@@ -1,52 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center">
-
+    android:orientation="vertical"
+    >
 
     <Button
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:id="@+id/game1"
-        android:text="Rock-Paper-Scissors"
+        android:text="Beat Voldemort"
         android:onClick="launchgame1"
-        android:padding="15dp"/>
+        android:background="@drawable/voldemort"
+        android:fontFamily="@font/harrypotter"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="50dp"
+        android:shadowColor="#FFFFFF"
+        android:shadowRadius="10"
+        android:layout_weight="1"/>
+
 
     <Button
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/game2"
-        android:text="game two"
-        android:onClick="launchgame2"
-        android:layout_below="@id/game1"
-        android:padding="15dp"/>
 
-    <Button
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:id="@+id/game3"
-        android:text="game three"
+        android:text="House Sorting Hat"
         android:onClick="launchgame3"
-        android:layout_below="@id/game2"
-        android:padding="15dp"/>
+        android:background="@drawable/sortinghat"
+        android:fontFamily="@font/harrypotter"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="50dp"
+        android:shadowColor="#FFFFFF"
+        android:shadowRadius="10"
+        android:layout_weight="1"/>
 
-    <Button
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/game4"
-        android:text="game four"
-        android:onClick="launchgame4"
-        android:layout_below="@id/game3"
-        android:padding="15dp"/>
 
-</RelativeLayout>
+
+</LinearLayout>

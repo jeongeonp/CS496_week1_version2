@@ -3,15 +3,14 @@ package com.example.q.myapplication;
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,6 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.LinkedList;
 
@@ -32,24 +29,8 @@ public class tab1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.firsttab);
         loadOrRequestPermission();
-
-        /*setContentView(R.layout.list_item);
-        Bundle b = getIntent().getExtras();
-        TextView notes = (TextView) findViewById(R.id.info);
-        if (b != null) {
-            notes.setText(b.getCharSequence("notes"));
-        }
-        else {
-            notes.setText("why null");
-        }*/
-
-
     }
 
-    public void launchMoreInfo(View view) {
-        Intent intent = new Intent(this, tab1_moreinfo.class);
-        startActivity(intent);
-    }
     public void loadOrRequestPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
             doLoad();
@@ -61,13 +42,14 @@ public class tab1 extends AppCompatActivity {
 
     public void doLoad()
     {
-        Toast.makeText(this, "loading...", Toast.LENGTH_SHORT).show();
+
         new LoadContactTask().execute();
     }
 
     public void onLoadButtonClick(View view)
     {
         loadOrRequestPermission();
+        Toast.makeText(this, "Reloading...", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -129,6 +111,7 @@ public class tab1 extends AppCompatActivity {
         }
     }
 }
+
 class Tuple<X, Y> {
     final X first;
     final Y second;
@@ -139,6 +122,7 @@ class Tuple<X, Y> {
     }
 
 }
+
 class MyAdapter extends BaseAdapter
 {
     private LayoutInflater inflater;
@@ -181,12 +165,10 @@ class MyAdapter extends BaseAdapter
 
         Tuple<String, String> d = data.get(i);
 
-        TextView name = (TextView)view.findViewById(R.id.name);
+        TextView name = view.findViewById(R.id.name);
         name.setText(d.first);
-        TextView contact = (TextView)view.findViewById(R.id.mobile);
+        TextView contact = view.findViewById(R.id.mobile);
         contact.setText(d.second);
-        /*TextView notes = (TextView)view.findViewById(R.id.notes);
-        notes.setText("why null");*/
 
         return view;
     }

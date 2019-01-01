@@ -73,7 +73,7 @@ public class ImageAdapter extends BaseAdapter {
         RequestManager requestManager = Glide.with(mContext);
         // Create request builder and load image.
         RequestBuilder requestBuilder = requestManager.load(uris[position]).listener(requestListener);
-        requestBuilder = requestBuilder.apply(new RequestOptions().override(250, 250).error(R.drawable.ic_launcher_foreground));
+        requestBuilder = requestBuilder.apply(new RequestOptions().override(250, 250));
         // Show image into target imageview.
         requestBuilder.into(imageView);
         return imageView;

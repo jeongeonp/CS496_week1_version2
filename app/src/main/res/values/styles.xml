@@ -6,6 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">harrypotter</item>
+    </style>
+
+    <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/harrypotter</item>
+        <item name="android:textSize">45dp</item>
     </style>
 
 </resources>

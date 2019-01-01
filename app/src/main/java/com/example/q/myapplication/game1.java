@@ -34,7 +34,7 @@ public class game1 extends AppCompatActivity {
         rock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iv_you.setImageResource(R.drawable.rock);
+                iv_you.setImageResource(R.drawable.rock2);
                 String msg = play_turn("rock");
                 Toast.makeText(game1.this, msg, Toast.LENGTH_SHORT).show();
                 tv_score.setText(myScore + " out of " + totalScore );
@@ -44,7 +44,7 @@ public class game1 extends AppCompatActivity {
         paper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iv_you.setImageResource(R.drawable.paper);
+                iv_you.setImageResource(R.drawable.paper2);
                 String msg = play_turn("paper");
                 Toast.makeText(game1.this, msg, Toast.LENGTH_SHORT).show();
                 tv_score.setText(myScore + " out of " + totalScore );
@@ -54,7 +54,7 @@ public class game1 extends AppCompatActivity {
         scissors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iv_you.setImageResource(R.drawable.scissors);
+                iv_you.setImageResource(R.drawable.scissors2);
                 String msg = play_turn("scissors");
                 Toast.makeText(game1.this, msg, Toast.LENGTH_SHORT).show();
                 tv_score.setText(myScore + " out of " + totalScore );
@@ -75,9 +75,9 @@ public class game1 extends AppCompatActivity {
         else if (randNum == 2) { cOpponent = "paper"; }
         else if (randNum == 3) {cOpponent = "scissors"; }
 
-        if (cOpponent == "rock") { iv_opponent.setImageResource(R.drawable.rock); }
-        else if (cOpponent == "paper") { iv_opponent.setImageResource(R.drawable.paper); }
-        else if (cOpponent == "scissors") { iv_opponent.setImageResource(R.drawable.scissors); }
+        if (cOpponent == "rock") { iv_opponent.setImageResource(R.drawable.rock2); }
+        else if (cOpponent == "paper") { iv_opponent.setImageResource(R.drawable.paper2); }
+        else if (cOpponent == "scissors") { iv_opponent.setImageResource(R.drawable.scissors2); }
 
 
         if (cOpponent == cPlayer) {

@@ -17,10 +17,6 @@ public class tab3 extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void launchgame2(View view) {
-        Intent intent = new Intent(this, game2.class);
-        startActivity(intent);
-    }
 
     public void launchgame3(View view) {
         Intent intent = new Intent(this, game3.class);
