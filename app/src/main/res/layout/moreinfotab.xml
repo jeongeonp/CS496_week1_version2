@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".tab1_moreinfo"
+    android:orientation="vertical"
     >
 
     <TextView
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Any notes?"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        />
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="okey so"
-        android:textSize="30dp"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/text"/>
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="enter"
+        android:layout_gravity="center"
+        android:id="@+id/enter"
+        />
+
+</LinearLayout>

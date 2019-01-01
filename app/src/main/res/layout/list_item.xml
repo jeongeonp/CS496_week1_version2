@@ -11,25 +11,26 @@
         android:id="@+id/name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="2dip"
         android:paddingTop="6dip"
-        android:textColor="@color/colorPrimaryDark"
+        android:paddingBottom="2dip"
+        android:textColor="@color/design_default_color_primary"
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="2dip"
-        android:textColor="@color/colorAccent" />
+
 
     <TextView
         android:id="@+id/mobile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#5d5d5d"
+        android:textColor="@color/colorAccent"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/notes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <Button
         android:id="@+id/info"

@@ -1,65 +1,47 @@
 package com.example.q.myapplication;
 
-import android.app.ProgressDialog;
+import android.Manifest;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.AsyncTask;
-import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.ListAdapter;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.w3c.dom.Text;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import android.view.View;
-import android.content.Intent;
-import android.widget.Button;
+import java.util.LinkedList;
 
 public class tab1 extends AppCompatActivity {
-
-    private String TAG = tab1.class.getSimpleName();
-
-    private ProgressDialog pDialog;
-    private ListView lv;
-
-    // URL to get contacts JSON
-    private static String url = "https://api.androidhive.info/contacts/";
-
-    ArrayList<HashMap<String, String>> contactList;
-
-    Button btninfo;
+    public final int CONTACT_LOAD_BUTTON = 1234;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_item);
-
-        /*btninfo = (Button)findViewById(R.id.info);
-        btninfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //다음페이지로 전환 형태
-                //화면 전환할 때 사용하는 클래스
-                Intent intent = new Intent(tab1.this, tab1_moreinfo.class);
-                startActivity(intent);
-            }
-        });*/
-
-
         setContentView(R.layout.firsttab);
+        loadOrRequestPermission();
 
-        contactList = new ArrayList<>();
-
-        lv = (ListView) findViewById(R.id.list);
-
-        new GetContacts().execute();
-
+        /*setContentView(R.layout.list_item);
+        Bundle b = getIntent().getExtras();
+        TextView notes = (TextView) findViewById(R.id.info);
+        if (b != null) {
+            notes.setText(b.getCharSequence("notes"));
+        }
+        else {
+            notes.setText("why null");
+        }*/
 
 
     }
@@ -68,104 +50,145 @@ public class tab1 extends AppCompatActivity {
         Intent intent = new Intent(this, tab1_moreinfo.class);
         startActivity(intent);
     }
-
-    /**
-     * Async task class to get json by making HTTP call
-     */
-    private class GetContacts extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            // Showing progress dialog
-            pDialog = new ProgressDialog(tab1.this);
-            pDialog.setMessage("Please wait...");
-            pDialog.setCancelable(false);
-            pDialog.show();
-
+    public void loadOrRequestPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+            doLoad();
         }
+        else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, CONTACT_LOAD_BUTTON);
+        }
+    }
 
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            HttpHandler sh = new HttpHandler();
+    public void doLoad()
+    {
+        Toast.makeText(this, "loading...", Toast.LENGTH_SHORT).show();
+        new LoadContactTask().execute();
+    }
 
-            // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url);
+    public void onLoadButtonClick(View view)
+    {
+        loadOrRequestPermission();
+    }
 
-            Log.e(TAG, "Response from url: " + jsonStr);
-
-            if (jsonStr != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
-
-                    // Getting JSON Array node
-                    JSONArray contacts = jsonObj.getJSONArray("contacts");
-
-                    // looping through All Contacts
-                    for (int i = 0; i < contacts.length(); i++) {
-                        JSONObject c = contacts.getJSONObject(i);
-
-                        String id = c.getString("id");
-                        String name = c.getString("name");
-                        String email = c.getString("email");
-                        String address = c.getString("address");
-                        String gender = c.getString("gender");
-
-                        // Phone node is JSON Object
-                        JSONObject phone = c.getJSONObject("phone");
-                        String mobile = phone.getString("mobile");
-                        String home = phone.getString("home");
-                        String office = phone.getString("office");
-
-                        // tmp hash map for single contact
-                        HashMap<String, String> contact = new HashMap<>();
-
-                        // adding each child node to HashMap key => value
-                        contact.put("id", id);
-                        contact.put("name", name);
-                        contact.put("email", email);
-                        contact.put("mobile", mobile);
-
-                        // adding contact to contact list
-                        contactList.add(contact);
-                    }
-                } catch (final JSONException e) {
-                    Log.e(TAG, "Json parsing error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    });
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
+    {
+        switch(requestCode)
+        {
+            case CONTACT_LOAD_BUTTON:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    doLoad();
                 }
-            } else {
-                Log.e(TAG, "Couldn't get json from server.");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check for possible errors!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private class LoadContactTask extends AsyncTask<Void,Void,LinkedList<Tuple<String, String>>> {
+
+        @Override
+        protected LinkedList<Tuple<String, String>> doInBackground(Void... voids) {
+            LinkedList<Tuple<String, String>> retval = new LinkedList<>();
+            ContentResolver cr = getContentResolver();
+            Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
+                    null, null, null, null);
+
+            if ((cur != null ? cur.getCount() : 0) > 0) {
+                while (cur != null && cur.moveToNext()) {
+                    String id = cur.getString(
+                            cur.getColumnIndex(ContactsContract.Contacts._ID));
+                    String name = cur.getString(cur.getColumnIndex(
+                            ContactsContract.Contacts.DISPLAY_NAME));
+                    if (cur.getInt(cur.getColumnIndex(
+                            ContactsContract.Contacts.HAS_PHONE_NUMBER)) > 0) {
+                        Cursor pCur = cr.query(
+                                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                                null,
+                                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                                new String[]{id}, null);
+                        while (pCur.moveToNext()) {
+                            String phoneNo = pCur.getString(pCur.getColumnIndex(
+                                    ContactsContract.CommonDataKinds.Phone.NUMBER));
+                            retval.add(new Tuple<>(name, phoneNo));
+                        }
+                        pCur.close();
                     }
-                });
-
+                }
             }
-
-            return null;
+            if (cur != null) {
+                cur.close();
+            }
+            return retval;
         }
 
         @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            // Dismiss the progress dialog
-            if (pDialog.isShowing())
-                pDialog.dismiss();
-            /**
-             * Updating parsed JSON data into ListView
-             * */
-            ListAdapter adapter = new SimpleAdapter(tab1.this, contactList, R.layout.list_item, new String[]{"name", "email", "mobile"}, new int[]{R.id.name, R.id.email, R.id.mobile});
-
-            lv.setAdapter(adapter);
+        protected void onPostExecute(LinkedList<Tuple<String, String>> result)
+        {
+            ListView simpleList = (ListView) findViewById(R.id.list);
+            MyAdapter arrayAdapter = new MyAdapter(tab1.this, R.layout.list_item, result);
+            simpleList.setAdapter(arrayAdapter);
         }
+    }
+}
+class Tuple<X, Y> {
+    final X first;
+    final Y second;
+    Tuple(X x, Y y)
+    {
+        first = x;
+        second = y;
+    }
+
+}
+class MyAdapter extends BaseAdapter
+{
+    private LayoutInflater inflater;
+    private LinkedList<Tuple<String, String>> data;
+    private int layout;
+
+    public MyAdapter(Context ctx, int layout_init, LinkedList<Tuple<String, String>> data_init) {
+        if(data_init == null)
+        {
+            data = new LinkedList<>();
+        }
+        else
+        {
+            data = data_init;
+        }
+        layout = layout_init;
+        inflater = (LayoutInflater)ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
     }
+    @Override
+    public int getCount() {
+        return data.size();
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        if(view == null) {
+            view = inflater.inflate(layout, viewGroup, false);
+        }
+
+        Tuple<String, String> d = data.get(i);
+
+        TextView name = (TextView)view.findViewById(R.id.name);
+        name.setText(d.first);
+        TextView contact = (TextView)view.findViewById(R.id.mobile);
+        contact.setText(d.second);
+        /*TextView notes = (TextView)view.findViewById(R.id.notes);
+        notes.setText("why null");*/
+
+        return view;
+    }
+
 }

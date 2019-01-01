@@ -9,5 +9,5 @@
     android:horizontalSpacing="10dp"
     android:stretchMode="columnWidth"
     android:gravity="center"
-    android:background="@color/colorPrimary"
+    android:background="#000000"
     />
