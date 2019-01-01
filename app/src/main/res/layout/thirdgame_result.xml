@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/background3"
+        android:id="@+id/background"
+        android:scaleType="fitXY"
+        />
+
+    <TextView
+        android:layout_marginTop="33dp"
+        android:id="@+id/intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="If you went to Hogwarts, you will be placed in"
+        android:fontFamily="@font/harrypotter"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="50dp"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/intro"
+        android:layout_marginTop="30dp"
+        android:id="@+id/result"
+        android:textSize="60dp"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        />
+
+
+</RelativeLayout>
