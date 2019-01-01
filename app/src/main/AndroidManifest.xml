@@ -32,6 +32,8 @@
             android:parentActivityName=".tab3"/>
         <activity android:name=".game3"
             android:parentActivityName=".tab3"/>
+        <activity android:name=".game3_result"
+            android:parentActivityName=".game3"/>
         <activity android:name=".tab1_moreinfo"
             android:parentActivityName=".tab1"/>
         <activity android:name=".ImageViewPager"></activity>
