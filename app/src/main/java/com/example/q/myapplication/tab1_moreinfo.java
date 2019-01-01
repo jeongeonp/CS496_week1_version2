@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 
 public class tab1_moreinfo extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,8 +32,12 @@ public class tab1_moreinfo extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(getApplicationContext(), tab1.class);
-        Bundle b = new Bundle();
+        /*// Get the text view.
+        TextView showCountTextView = (TextView) findViewById(R.id.notes);
+        // Get the value of text view
+       showCountTextView.setText("notes ");*/
 
+        Bundle b = new Bundle();
         b.putString("notes", notes.getText().toString());
 
         intent.putExtras(b);
