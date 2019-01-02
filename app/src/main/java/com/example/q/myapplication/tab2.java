@@ -89,6 +89,10 @@ public class tab2 extends Activity {
                 {
                     doLoad();
                 }
+                else
+                {
+                    Toast.makeText(this, "Need to allow access!", Toast.LENGTH_SHORT).show();
+                }
         }
     }
 }

@@ -49,7 +49,7 @@ public class tab1 extends AppCompatActivity {
     public void onLoadButtonClick(View view)
     {
         loadOrRequestPermission();
-        Toast.makeText(this, "Reloading...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Reloaded!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -61,6 +61,10 @@ public class tab1 extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 {
                     doLoad();
+                }
+                else
+                {
+                    Toast.makeText(this, "Need to allow access!", Toast.LENGTH_SHORT).show();
                 }
         }
     }
